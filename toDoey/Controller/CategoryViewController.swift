@@ -30,6 +30,17 @@ class CategoryViewController: UITableViewController {
     
         return cell
     }
+    //MARK: - Tablview Delegate Methods
+   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToItems", sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TodoListViewController
+        if let indexpath = tableView.indexPathForSelectedRow{
+            destinationVC.selectedCategory = categoryArray[indexpath.row]
+            
+        }
+    }
     
     //MARK: - Data Manipulation Methodss
     
